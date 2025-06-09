@@ -1,0 +1,43 @@
+{
+  "name": "common",
+  "version": "4.2.0",
+  "private": true,
+  "scripts": {
+    "dev": "npm run serve",
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build"
+  },
+  "dependencies": {
+    "@kangc/v-md-editor": "^1.7.12",
+    "@liveqing/liveplayer": "^2.7.22",
+    "axios": "^0.18.0",
+    "element-ui": "^2.11.0",
+    "flv.js": "^1.6.2",
+    "highlight.js": "^11.9.0",
+    "jwchat": "^1.1.1",
+    "live-player": "^1.0.1",
+    "mavon-editor": "^2.10.4",
+    "moment": "^2.29.4",
+    "mqtt": "^4.3.6",
+    "prismjs": "^1.29.0",
+    "screenfull": "^6.0.2",
+    "svg-sprite-loader": "^6.0.11",
+    "tcplayer.js": "^4.7.0",
+    "vue": "^2.6.10",
+    "vue-axios": "^2.1.5",
+    "vue-baberrage": "^3.2.4",
+    "vue-puzzle-vcode": "^1.1.10",
+    "vue-router": "^3.0.3",
+    "vue-schart": "^2.0.0",
+    "vue-video-player": "^5.0.2",
+    "vuex": "^3.4.0",
+    "vuex-persistedstate": "^4.1.0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.9.0",
+    "@vue/cli-service": "^3.9.0",
+    "script-loader": "^0.7.2",
+    "echarts": "^4.9.0",
+    "vue-template-compiler": "^2.6.10"
+  }
+}

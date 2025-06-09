@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xxx.modules.mapper.CarMapper">
+
+<select id="selectListInfo" resultType="com.xxx.modules.entity.Car">
+select `c`.*,u.real_name from `car` c   left join `user` u on c.user_id = u.id
+   where 1=1
+   <if test="id !=null">
+       and `c`.id = #{id}
+   </if>
+    <if test="carNumber !=null">
+        and  c.car_number like concat('%',#{carNumber},'%')
+    </if>
+    <if test="brand !=null">
+        and  c.brand like concat('%',#{brand},'%')
+    </if>
+    <if test="type !=null">
+        and c.type = #{type}
+    </if>
+    <if test="userId !=null">
+        and c.user_id = #{userId}
+    </if>
+    <if test="realName !=null">
+        and u.real_name like concat('%',#{realName},'%')
+    </if>
+        </select>
+
+
+</mapper>

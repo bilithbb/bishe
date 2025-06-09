@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xxx.modules.mapper.StallMapper">
+
+<select id="selectListInfo" resultType="com.xxx.modules.entity.Stall">
+select `s`.*,ss.sort_name from `stall` s   left join `sort` ss on s.sort_id = ss.id
+   where 1=1
+   <if test="id !=null">
+       and `s`.id = #{id}
+   </if>
+    <if test="stallNumber !=null">
+        and  s.stall_number like concat('%',#{stallNumber},'%')
+    </if>
+    <if test="idList !=null and idList.size() > 0">
+        and s.id in
+        <foreach collection="idList" item="item" index="index" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </if>
+    <if test="stallName !=null">
+        and  s.stall_name like concat('%',#{stallName},'%')
+    </if>
+    <if test="sortId !=null">
+        and s.sort_id = #{sortId}
+    </if>
+    <if test="status !=null">
+        and s.status = #{status}
+    </if>
+    <if test="isBanner !=null">
+        and s.is_banner = #{isBanner}
+    </if>
+    <if test="sortName !=null">
+        and ss.sort_name like concat('%',#{sortName},'%')
+    </if>
+            order by s.create_time desc
+</select>
+
+
+</mapper>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xxx.modules.mapper.LeaveMapper">
+
+<select id="selectListInfo" resultType="com.xxx.modules.entity.Leave">
+select `l`.*,u.real_name,u.image_url from `leave` l   left join `user` u on l.user_id = u.id
+   where 1=1
+    <if test="leaveMessage !=null">
+        and  l.leave_message like concat('%',#{leaveMessage},'%')
+    </if>
+    <if test="userId !=null">
+        and l.user_id = #{userId}
+    </if>
+    <if test="realName !=null">
+        and u.real_name like concat('%',#{realName},'%')
+    </if>
+        </select>
+
+</mapper>

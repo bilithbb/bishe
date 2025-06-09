@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xxx.modules.mapper.AppointMapper">
+
+<select id="selectListInfo" resultType="com.xxx.modules.entity.Appoint">
+select `a`.*,u.real_name, s.stall_number from `appoint` a   left join `user` u on a.user_id = u.id
+   left join `stall` s on a.stall_id = s.id
+   where 1=1
+   <if test="id !=null">
+       and `a`.id = #{id}
+   </if>
+    <if test="userId !=null">
+        and a.user_id = #{userId}
+    </if>
+    <if test="stallId !=null">
+        and a.stall_id = #{stallId}
+    </if>
+    <if test="status !=null">
+        and a.status = #{status}
+    </if>
+    <if test="realName !=null">
+        and u.real_name like concat('%',#{realName},'%')
+    </if>
+            <if test="stallNumber !=null">
+        and s.stall_number like concat('%',#{stallNumber},'%')
+    </if>
+            <if test="carNumber !=null">
+        and a.car_number like concat('%',#{carNumber},'%')
+    </if>
+        </select>
+    <select id="selectTotalPrice" resultType="java.lang.Double">
+        select SUM(total_price) from appoint where status = 5
+        <if test="currentDay !=null">
+            and current_day = #{currentDay}
+        </if>
+        <if test="year !=null">
+            and `year` = #{year}
+        </if>
+        <if test="month !=null">
+            and `month` = #{month}
+        </if>
+    </select>
+    <select id="selectTotalCount" resultType="java.lang.Integer">
+        select COUNT(*) from appoint where status = 5
+        <if test="currentDay !=null">
+            and current_day = #{currentDay}
+        </if>
+        <if test="year !=null">
+            and `year` = #{year}
+        </if>
+        <if test="month !=null">
+            and `month` = #{month}
+        </if>
+    </select>
+    <select id="selectDistinctUserId" resultType="java.lang.Integer">
+        select distinct user_id from appoint
+    </select>
+
+
+</mapper>

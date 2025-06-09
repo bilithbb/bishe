@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xxx.modules.mapper.CollectMapper">
+
+<select id="selectListInfo" resultType="com.xxx.modules.entity.Collect">
+select `c`.*,u.real_name, a.title from `collect` c   left join `user` u on c.user_id = u.id
+   left join `advert` a on c.advert_id = a.id
+   where 1=1
+   <if test="id !=null">
+       and `c`.id = #{id}
+   </if>
+    <if test="userId !=null">
+        and c.user_id = #{userId}
+    </if>
+    <if test="advertId !=null">
+        and c.advert_id = #{advertId}
+    </if>
+    <if test="realName !=null">
+        and u.real_name like concat('%',#{realName},'%')
+    </if>
+            <if test="title !=null">
+        and a.title like concat('%',#{title},'%')
+    </if>
+        </select>
+
+
+</mapper>
